@@ -14,17 +14,25 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                // We add -Djacoco.skip=true to avoid the crash we saw in your logs
+                // -Djacoco.skip=true prevents the "IllegalClassFormatException" crash
                 sh 'mvn clean test -Djacoco.skip=true'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
-                // This 'SonarQube-Server' name must match what you configured in Jenkins System settings
+                // IMPORTANT: 'SonarQube-Server' must match the Name in 
+                // Jenkins -> Manage Jenkins -> System -> SonarQube installations
                 withSonarQubeEnv('SonarQube-Server') {
                     sh 'mvn sonar:sonar -Dsonar.projectKey=Petclinic-Project'
                 }
+            }
+        }
+        
+        stage('Quality Gate') {
+            steps {
+                // This waits for SonarQube to finish processing the report
+                waitForQualityGate abortPipeline: true
             }
         }
     }
