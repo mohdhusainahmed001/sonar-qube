@@ -12,27 +12,19 @@
     <url>https://spring-petclinic.github.io/</url>
 
     <properties>
-
-        <!-- Generic properties -->
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-        <!-- Spring -->
-        <!-- For framework compatibility, refer to the Spring Boot Dependencies BOM -->
-        <!-- https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-dependencies/build.gradle -->
         <spring-framework.version>5.3.18</spring-framework.version>
 
-        <!-- Web dependencies -->
-        <!-- Version update should also be done in wro.xml, petclinic.less and static resources: htmlHeader.tag and footer.tag-->
         <webjars-bootstrap.version>3.3.6</webjars-bootstrap.version>
         <webjars-jquery-ui.version>1.12.1</webjars-jquery-ui.version>
         <webjars-jquery.version>3.5.1</webjars-jquery.version>
-        <wro4j.version>1.8.0</wro4j.version> <!-- wro4j 1.0.0 requires Java 9 -->
+        <wro4j.version>1.8.0</wro4j.version> 
 
-        <!-- Java EE / Java SE dependencies -->
         <tomcat.version>9.0.46</tomcat.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-runtime.version>2.3.4</jaxb-runtime.version>
@@ -40,33 +32,27 @@
         <servlet-api.version>4.0.4</servlet-api.version>
         <taglibs-standard.version>1.2.5</taglibs-standard.version>
 
-        <!-- Persistence -->
         <spring-data.version>2021.1.0-RC1</spring-data.version>
         <hibernate.version>5.6.0.Final</hibernate.version>
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
         <hsqldb.version>2.5.2</hsqldb.version>
         <h2database.version>1.4.200</h2database.version>
 
-        <!-- Logging -->
         <slf4j.version>1.7.32</slf4j.version>
         <logback.version>1.2.6</logback.version>
 
-        <!-- Test -->
         <assertj.version>3.21.0</assertj.version>
         <json-path.version>2.6.0</json-path.version>
         <mockito.version>4.0.0</mockito.version>
         <hamcrest.version>2.2</hamcrest.version>
         <junit-jupiter.version>5.8.1</junit-jupiter.version>
 
-        <!-- JDBC Drivers -->
         <mysql-driver.version>8.0.19</mysql-driver.version>
         <postgresql-driver.version>9.4.1211.jre7</postgresql-driver.version>
 
-        <!-- Others -->
         <jackson.version>2.12.4</jackson.version>
         <aspectj.version>1.9.7</aspectj.version>
 
-        <!-- Maven plugins -->
         <jetty-maven-plugin.version>9.4.43.v20210629</jetty-maven-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -74,12 +60,11 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
-        <jacoco-maven-plugin>0.8.6</jacoco-maven-plugin>
+        
+        <jacoco-maven-plugin>0.8.12</jacoco-maven-plugin>
 
-        <!-- Docker image -->
         <docker.jib-maven-plugin.version>2.6.0</docker.jib-maven-plugin.version>
         <docker.image.prefix>springcommunity</docker.image.prefix>
-
     </properties>
 
     <dependencyManagement>
@@ -114,13 +99,11 @@
             <version>${tomcat.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.apache.taglibs</groupId>
             <artifactId>taglibs-standard-jstlel</artifactId>
             <version>${taglibs-standard.version}</version>
         </dependency>
-        <!--  JSon -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -135,12 +118,10 @@
             <version>${json-path.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- SPRING, SPRING, SPRINGITY SPRING -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -151,7 +132,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-framework.version}</version>
         </dependency>
-        <!-- used for EhCacheCacheManager -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -162,7 +142,6 @@
             <artifactId>spring-oxm</artifactId>
             <version>${spring-framework.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
@@ -174,19 +153,12 @@
             <version>${aspectj.version}</version>
             <scope>runtime</scope>
         </dependency>
-
-        <!-- Database connection pool
-        See here for more details on commons-dbcp versus tomcat-jdbc:
-        http://blog.ippon.fr/2013/03/13/improving-the-performance-of-the-spring-petclinic-sample-application-part-3-of-5/
-    -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
             <version>${tomcat.version}</version>
             <scope>runtime</scope>
         </dependency>
-
-        <!-- Logging with SLF4J & LogBack -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -198,8 +170,6 @@
             <version>${logback.version}</version>
             <scope>runtime</scope>
         </dependency>
-
-        <!-- HIBERNATE -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -215,9 +185,6 @@
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-
-
-        <!-- Webjars -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
@@ -233,8 +200,6 @@
             <artifactId>bootstrap</artifactId>
             <version>${webjars-bootstrap.version}</version>
         </dependency>
-
-        <!-- Test Artifacts -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -269,10 +234,6 @@
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- JAXB and Activation added for Java 9 compatibility.
-             The JAXB API is considered to be Java EE API and therefore is
-             no longer contained on the default class path in Java SE 9 -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -288,10 +249,8 @@
             <artifactId>javax.activation-api</artifactId>
             <version>${javax-activation.version}</version>
         </dependency>
-
     </dependencies>
 
-    <!-- Maven plugin versions are mentioned in order to guarantee the build reproducibility in the long term -->
     <build>
         <defaultGoal>install</defaultGoal>
         <finalName>petclinic</finalName>
@@ -303,7 +262,6 @@
         </resources>
         <testResources>
             <testResource>
-                <!-- declared explicitly so Spring config files can be placed next to their corresponding JUnit test class  -->
                 <directory>${project.basedir}/src/test/java</directory>
             </testResource>
             <testResource>
@@ -316,7 +274,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -327,7 +284,6 @@
                     </includes>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -336,7 +292,6 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
@@ -363,7 +318,6 @@
                     </additionalProjectnatures>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -374,7 +328,7 @@
                     </descriptorRefs>
                 </configuration>
             </plugin>
-
+            
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -395,7 +349,6 @@
                 </executions>
             </plugin>
 
-            <!--Specify the encoding for copying resources-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -404,7 +357,6 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>ro.isdc.wro4j</groupId>
                 <artifactId>wro4j-maven-plugin</artifactId>
@@ -430,7 +382,6 @@
                         <artifactId>bootstrap</artifactId>
                         <version>${webjars-bootstrap.version}</version>
                     </dependency>
-                    <!-- Required for Java 9 and above -->
                     <dependency>
                         <groupId>org.mockito</groupId>
                         <artifactId>mockito-core</artifactId>
@@ -438,13 +389,11 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty-maven-plugin.version}</version>
             </plugin>
-
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
@@ -459,7 +408,6 @@
                     </to>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
@@ -543,7 +491,7 @@
                 </dependency>
             </dependencies>
         </profile>
-   </profiles>
+    </profiles>
 
     <repositories>
         <repository>
@@ -552,5 +500,4 @@
             <url>https://repo.spring.io/milestone</url>
         </repository>
     </repositories>
-
 </project>
